@@ -1,0 +1,279 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+    <!--Owl Carousel CSS-->
+    <link rel="stylesheet" href="{% static 'store/css/owl.carousel.min.css' %}">
+
+    <!--FontAwesome CSS-->
+    <link rel="stylesheet" href="{% static 'store/css/all.min.css' %}">
+
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="{% static 'store/css/style.css' %}">
+    <link rel="shortcut icon" href='{% static "/store/images/favicon.ico" %}' />
+    <title> ShopAnywhr | {% block title %} {% endblock title %} </title>
+
+</head>
+
+<body>
+
+    <!-- Navbar here -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark "
+        style=" padding-top: 10px; padding-bottom: 10px; background-color: rgb(1, 90, 86);">
+        <div class="container-sm">
+            <a class="navbar-brand"
+                style=" font-weight:bold;font-size: 25px; font-family:Cursive; color: rgb(250, 245, 0);"
+                href="{% url 'home' %} ">^ShopAnywhr^</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto" style="font-weight: bold;">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#"></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'home' %}"> Home </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Electronics
+                        </a>
+                      
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{% url 'mobile' %}">Mobile</a>
+                            <a class="dropdown-item" href="{% url 'accessorie' %}">Accessories</a>
+
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Fashion
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{% url 'topwear' %}">Top Wear</a>
+                            <a class="dropdown-item" href="{% url 'bottomwear' %}">Bottom Wear</a>
+
+                        </div>
+                    </li>
+                     <li class="nav-item active">
+                        <a class="nav-link" href="">  </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="">  </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="">  </a>
+                    </li>
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="http://127.0.0.1:8000/api/"> REST API's (Products and Customers) </a>
+                    </li>
+
+                </ul>
+
+                <div>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        {% if request.user.is_authenticated %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{request.user.username|capfirst}}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+                                <a class="dropdown-item" href="{% url 'orders' %}">Orders</a>
+                                <a class="dropdown-item" href="{% url 'passwordchange' %}">Change Password</a>
+                                <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+
+                            </div>
+
+                        </li>
+
+                        <li class="nav-item mx-2">
+                            <a href="{% url 'showcart' %}" class="nav-link text-white"><span class="badge bg-danger">{{totalitem}}</span> Cart </a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <img src='{% static "store/images/product/cart.png" %}' style="width: 40px;" alt="aa">
+                        </li>
+                        {% else %}
+                        <li class="nav-item mx-2">
+                            <a href="{% url 'login' %}" class=" btn btn-danger text-lg-right">Login</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a href=" {% url 'customerregistration' %} " class=" btn btn-success text-light">Sign
+                                Up</a>
+
+                        </li>
+                        <li class="nav-item mx-2">
+                            <!-- <a href=" {% url 'customerregistration' %} "
+                                class=" btn btn-success nav-link text-white">Sign Up</a> -->
+
+                            <img src='{% static "store/images/product/cart.png" %}' style="width: 40px;" alt="aa">
+                        </li>
+                        {% endif %}
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Navbar here -->
+
+    {% block banner_slider %}
+
+    {% endblock banner_slider %}
+
+    {% block content %}
+
+    {% endblock content %}
+
+
+    <!-- Footer -->
+
+    <footer class="page-footer font-small unique-color-dark">
+
+
+        <div class="text-center text-md-left mt-0 text-light"  style="background-color: rgb(4, 82, 78);"  >
+
+            <div class="row mt-3">
+
+                <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                    <br>
+
+                    <br>
+                    <a style=" font-weight:bold;font-size: 50px; font-family:Cursive; color: rgb(250, 245, 0);" href="{% url 'home' %} ">^ShopAnywhr^</a>
+                   
+                    <hr>
+                    <img src='{% static "store/images/emptycart.png" %}' width="100" height="70" alt="">
+                    <br>
+                    <br>
+                  
+
+                    <h6 class="text-uppercase font-weight-bold">Head Office Address</h6>
+                    <hr color="white" >
+
+                    <!-- <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto " style="width: 60px;"> -->
+                    <i class="fas fa-map-marker-alt  "></i>
+                    <p style="font-size: 20px;"> 510, 5th Floor, xyz bld, Plot No 37,
+                      
+                         Mumbai- 400001 </p>
+                    <hr>
+                   
+
+
+                </div>
+
+
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+
+                    <br>
+                    <br>
+                    <h6 class="text-uppercase font-weight-bold"> Products </h6>
+                    <hr color="white" class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                    <p>
+                        <a class="nav-link text-white " href=" {% url 'mobile' %} "> Mobiles </a>
+                        <a class="nav-link text-white " href="{% url 'accessorie' %}">Accessories</a>
+                        <a class="nav-link text-white " href="{% url 'topwear' %}">Topwears</a>
+                        <a class="nav-link text-white " href="{% url 'bottomwear' %}">bottomwears</a>
+
+            
+                    </p>
+                    <hr>
+                    <h5>Follow us on</h5>
+                    <hr color="white" >
+                    <a class="navbar-brand" style="padding-right: 15px; color:rgb(219, 220, 221);" href="#">
+                        <i class="fab fa-facebook-square" style="font-size: 30px;color:rgb(219, 225, 231);"></i>
+                        <i class="fab fa-linkedin ;" style="font-size: 30px;color:rgb(219, 225, 231);"></i>
+                        <i class="fab fa-twitter-square" style="font-size: 30px;"></i>
+                    </a>
+                    <hr>
+                </div>
+
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                    <br>
+                    <br>
+                    <h6 class="text-uppercase font-weight-bold">Contact</h6>
+                    <hr color="white" class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; ">
+                    <p>
+                        <i></i> XYZ :
+                        <br>
+                        <i class="fas fa-phone-alt"></i> + 91 987456321
+                    </p>
+                    <p>
+                        <i></i>ABC :
+                        <br>
+                        <i class="fas fa-phone-alt"></i>+ 91 9988774455
+                    </p>
+                    <p>
+                        <i></i> HEAD OFFICE :
+                        <br>
+                        <i class="fas fa-print mr-3"></i>+ 022- 9874521
+                    </p>
+                    <p>
+                        <i class="fas fa-envelope mr-3"></i> mail@shopAnywhr.co.in
+                    </p>
+                    <p>
+                        <i class="fas fa-home mr-3"></i>  Mumbai, Maharashtra
+                    </p>
+                    <hr color="white" >
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- Footer -->
+
+    <!-- footer here -->
+
+
+    <footer style="background-color: rgb(1, 70, 66); " class=" text-light">
+
+        <p class="text-center  py-1 my-0 ">
+
+            Copyright 2021 | ^ShopAnywhr^
+
+        </p>
+    </footer>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+
+    <script src="{% static 'store/javascript/owl.carousel.min.js' %}"></script>
+    <!-- <script src="{% static 'shop/js/all.min.js' %}"></script> -->
+    <script src="{% static 'store/javascript/myscript.js' %}"></script>
+    <script src="https://kit.fontawesome.com/e49dd0c71c.js" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>
